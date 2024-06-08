@@ -1,66 +1,91 @@
 import React from 'react';
-import { View, Text, StyleSheet, Button, Image, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
+import { Button } from 'react-native-elements'; // Importing Button from react-native-elements
 
 const WelcomeScreen = ({ navigation }) => {
   const handleNextPress = () => {
-    navigation.navigate('Home');
+    navigation.navigate('Register');
   };
 
   return (
-    <ImageBackground 
-      source={require('../assets/bg.jpg')} // Replace with your background image
-      style={styles.background}
-      resizeMode="cover"
-    >
-      <View style={styles.overlay}>
+   
+      <View  style={styles.background} >
         <Image 
           source={require('../assets/logo2.png')} // Replace with your salon logo image
           style={styles.logo}
           resizeMode="contain"
         />
         <Text style={styles.title}>Welcome to Your Personal Salon App!</Text>
-        <Text style={styles.subtitle}>Where Beauty Meets Convenience</Text>
-        <Button title="Get Started" onPress={handleNextPress} />
+        
+        <Button 
+          title="Get Started"
+          type="solid" // Using solid type for better visibility
+          onPress={handleNextPress}
+          buttonStyle={styles.button}
+          titleStyle={styles.buttonTitle}
+        />
       </View>
-    </ImageBackground>
+   
   );
 };
 
+// Define the screen options for WelcomeScreen
+WelcomeScreen.navigationOptions = {
+  headerShown: false, // This hides the header
+};
+
+
+
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
+    
     justifyContent: 'center',
     alignItems: 'center',
     width: '100%',
     height: '100%',
-    resizeMode: 'contain',
+    resizeMode: 'cover',
+    
+   
+    backgroundColor: 'dodgerblue',
+    
   },
-  overlay: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional: To add a dark overlay to the background image for readability
-  },
+ 
   logo: {
-    width: 250,
-    height: 250,
-    marginBottom: 20,
+    width: 300,
+    height: 300,
+    top: -40,
+    left: -10,
+    
     resizeMode: 'contain',
-    tintColor: 'black',
+    tintColor: 'black', // Adjust color for visibility over background
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 10,
+   top: -20,
     textAlign: 'center',
-    color: '#fff', // Adjust color for visibility over background
+    color: 'black', // Adjust color for visibility over background
   },
   subtitle: {
-    fontSize: 16,
-    color: '#ddd', // Adjust color for visibility over background
-    marginBottom: 20,
+    fontSize: 18,
+  
+    color: 'black', // Adjust color for visibility over background
+    marginBottom: 30,
     textAlign: 'center',
+  },
+  button: {
+    backgroundColor: 'black',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 30,
+    borderColor: 'white',
+    borderWidth: 1,
+    marginTop: 30,
+   
+  },
+  buttonTitle: {
+    fontSize: 18,
+    color: 'white',
   },
 });
 
